@@ -97,12 +97,10 @@ function monetization_format_amount($amount, $decimals = 2) {
 }
 function monetization_view_deduct_balance($c, $t, $params) {
 		$ad = $params['ad'];
-		error_log(1);
 		if(!isset($_SESSION['monetization_ads_viewed']) || !is_array($_SESSION['monetization_ads_viewed'])) {
 				$_SESSION['monetization_ads_viewed'] = array();
 		}
 		if(!in_array($ad->guid, $_SESSION['monetization_ads_viewed'])) {
-				error_log(2);
 				\Monetization\Campaign::deductByAd($ad);
 				$_SESSION['monetization_ads_viewed'][] = $ad->guid;
 		}
