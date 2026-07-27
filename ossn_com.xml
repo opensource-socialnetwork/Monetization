@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component xmlns="http://www.opensource-socialnetwork.org/v/3.0">
+    <name>Monetization</name>
+    <id>Monetization</id>
+    <author>Core Team</author>
+    <description>Monetize your social network.</description>
+    <license>Open Source Social Network License (OSSN LICENSE)</license>
+    <author_url>https://www.openteknik.com/</author_url>
+    <license_url>https://www.openteknik.com/license/commercial-license-v1</license_url>
+    <version>1.0</version>
+	<requires>
+		<type>ossn_version</type>
+		<version>10.0</version>
+	</requires>
+	<requires>
+		<type>ossn_component</type>
+		<name>Wallet</name>
+		<version>8.6</version>
+	</requires>		
+</component>
