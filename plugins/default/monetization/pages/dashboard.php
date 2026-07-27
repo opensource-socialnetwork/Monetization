@@ -83,18 +83,6 @@ $currency = defined('WALLET_CURRENCY_CODE') ? WALLET_CURRENCY_CODE : 'USD';
                     // Check if campaign is time-based (daily, fixed, flat)
                     $is_time_based  = ($billing_mode === 'daily');
 
-                    // Auto-expire time-based ads in DB on render if end date has passed
-                    if ($is_time_based && $raw_expiry > 0 && time() >= $raw_expiry) {
-                        if (!$is_expired) {
-                            $ad->expired = true;
-                            if (isset($ad->data)) {
-                                $ad->data->expired = true;
-                            }
-                            $ad->save();
-                            $is_expired = true;
-                        }
-                    }
-
                     // Calculate Spend (for performance campaigns)
                     $spent = max(0, $initial_budget - $balance);
 
@@ -176,8 +164,8 @@ $currency = defined('WALLET_CURRENCY_CODE') ? WALLET_CURRENCY_CODE : 'USD';
                                 </span>
                                 <span class="campaign-submetric"><?php echo ossn_print('ossn:monetization:flat_rate_hits'); ?></span>
                             <?php else: ?>
-                                <span class="campaign-metric text-primary"><?php echo sprintf('%.2f', $balance); ?> <?php echo $currency; ?></span>
-                                <span class="campaign-submetric"><?php echo ossn_print('ossn:monetization:spent', array(sprintf('%.2f', $spent), $currency)); ?></span>
+                                <span class="campaign-metric text-primary"><?php echo monetization_format_amount($balance); ?> <?php echo $currency; ?></span>
+                                <span class="campaign-submetric"><?php echo ossn_print('ossn:monetization:spent', array(sprintf('%.3f', $spent), $currency)); ?></span>
                             <?php endif; ?>
                         </td>
 

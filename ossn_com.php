@@ -91,6 +91,10 @@ function monetization_click_deduct_balance($c, $t, $params) {
 				$_SESSION['monetization_ads_deducted'][] = $ad->guid;
 		}
 }
+function monetization_format_amount($amount, $decimals = 2) {
+		$factor = pow(10, $decimals);
+		return number_format(floor((float) $amount * $factor) / $factor, $decimals);
+}
 function monetization_view_deduct_balance($c, $t, $params) {
 		$ad = $params['ad'];
 		error_log(1);
